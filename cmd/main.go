@@ -31,8 +31,9 @@ func init() {
 func main() {
 	ctx := context.Background()
 	payload, err := signInWithPassword(ctx, &signInWithPasswordInput{
-		Email:    email,
-		Password: password,
+		Email:             email,
+		Password:          password,
+		ReturnSecureToken: true,
 	})
 	if err != nil {
 		fmt.Printf("failed signInWithPassword(). Reason %s\n", err.Error())
@@ -43,8 +44,9 @@ func main() {
 }
 
 type signInWithPasswordInput struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
+	Email             string `json:"email"`
+	Password          string `json:"password"`
+	ReturnSecureToken bool   `json:"returnSecureToken"`
 }
 
 type signInWithPasswordPayload struct {
